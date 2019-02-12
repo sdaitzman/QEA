@@ -1,0 +1,220 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7687,        210]
+NotebookOptionsPosition[      7144,        192]
+NotebookOutlinePosition[      7513,        208]
+CellTagsIndexPosition[      7470,        205]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"test", "[", "theta_", "]"}], ":=", 
+  RowBox[{"(", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"boat", " ", "=", " ", 
+     RowBox[{"ImplicitRegion", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"x", "^", "2"}], "/", "2"}], "<", "y", "<", "2"}], " ", "&&",
+         " ", 
+        RowBox[{
+         RowBox[{"-", "2"}], " ", "<", " ", "x", "<", "2"}], "&&", 
+        RowBox[{"0", "<", "y", "<", "2"}], " ", "&&", " ", 
+        RowBox[{
+         RowBox[{"-", "5"}], " ", "<", " ", "z", " ", "<", "5"}]}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y", ",", " ", "z"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"water", " ", "=", " ", 
+     RowBox[{"ImplicitRegion", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Cos", "[", "theta", "]"}], "*", "y"}], " ", "+", " ", 
+          RowBox[{
+           RowBox[{"Sin", "[", "theta", "]"}], "*", "x"}]}], "<", "d"}], "&&", 
+        RowBox[{
+         RowBox[{"-", "2"}], "<", "x", "<", "2"}], "&&", 
+        RowBox[{"0", "<", "y", "<", "2"}], " ", "&&", " ", 
+        RowBox[{
+         RowBox[{"-", "5"}], "<", "z", "<", "5"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y", ",", " ", "z"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"mass", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"NIntegrate", "[", 
+       RowBox[{"300", ",", " ", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y", ",", " ", "z"}], "}"}], "\[Element]", 
+         "boat"}]}], "]"}], "+", "5000"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"under", " ", "=", " ", 
+     RowBox[{"RegionIntersection", "[", 
+      RowBox[{"boat", ",", "water"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"disp", " ", "=", " ", 
+     RowBox[{"Integrate", "[", 
+      RowBox[{"1000", ",", " ", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"x", ",", "y", ",", "z"}], "}"}], "\[Element]", "under"}], 
+       ",", " ", 
+       RowBox[{"Assumptions", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"0", "<", "d", "<", "2"}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"maxdisp", " ", "=", " ", 
+     RowBox[{"disp", "/.", 
+      RowBox[{"{", 
+       RowBox[{"d", "\[Rule]", "2"}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"waterline", " ", "=", 
+     RowBox[{"NSolve", "[", 
+      RowBox[{
+       RowBox[{"disp", "\[Equal]", "mass"}], ",", "d", ",", "Reals"}], 
+      "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"xcom", " ", "=", " ", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"mass", " "}]], "*", 
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{"300", "*", "x"}], ",", " ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y", ",", "z"}], "}"}], "\[Element]", "boat"}]}],
+         "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"zcom", " ", "=", " ", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       FractionBox["1", 
+        RowBox[{"mass", " "}]], "*", 
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{"300", "*", "z"}], ",", " ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y", ",", "z"}], "}"}], "\[Element]", "boat"}]}],
+         "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"ycom", " ", "=", " ", 
+     RowBox[{"N", "[", " ", 
+      RowBox[{
+       FractionBox["1", "mass"], "*", 
+       RowBox[{"Integrate", "[", 
+        RowBox[{
+         RowBox[{"300", "*", "y"}], ",", " ", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", "y", ",", "z"}], "}"}], "\[Element]", "boat"}]}],
+         "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"com", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{"xcom", ",", "ycom", ",", "zcom"}], "}"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fgrav", " ", "=", " ", 
+     RowBox[{"-", 
+      RowBox[{"(", 
+       RowBox[{"mass", " ", "*", " ", "9.8"}], ")"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fbuoy", " ", "=", " ", 
+     RowBox[{"-", "fgrav"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"displaced", " ", "=", " ", 
+     RowBox[{"N", "[", 
+      FractionBox["fgrav", 
+       RowBox[{" ", 
+        RowBox[{"1000", "*", "9.8"}]}]], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"draft", " ", "=", " ", 
+     RowBox[{"N", "[", 
+      RowBox[{"d", " ", "/.", " ", 
+       RowBox[{"waterline", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"cob", " ", "=", " ", 
+     RowBox[{"RegionCentroid", "[", 
+      RowBox[{"under", "/.", 
+       RowBox[{"{", 
+        RowBox[{"d", "\[Rule]", "draft"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"moment", " ", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"cob", "-", "com"}], ")"}], "\[Cross]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"fbuoy", "*", 
+         RowBox[{"Sin", "[", "theta", "]"}]}], ",", 
+        RowBox[{"fbuoy", "*", 
+         RowBox[{"Cos", "[", "theta", "]"}]}], ",", "0"}], "}"}]}]}]}], 
+   "\[IndentingNewLine]", ")"}]}]], "Input",
+ CellChangeTimes->{{3.758920771637318*^9, 3.7589208234038143`*^9}, {
+  3.7589208783625994`*^9, 3.758921010024725*^9}, {3.7589210554157*^9, 
+  3.758921148423809*^9}, {3.758921183727479*^9, 3.758921277138891*^9}, {
+  3.758921361231301*^9, 3.7589213688041043`*^9}, {3.758921411452468*^9, 
+  3.758921412244659*^9}, {3.7589214495233326`*^9, 3.758921456773658*^9}, {
+  3.7589215385327606`*^9, 3.7589216011456394`*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"b7750ea0-874c-4183-b537-896c3e8d551c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"test", "[", 
+  RowBox[{"30", "\[Degree]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.758921157126356*^9, 3.758921163920829*^9}, {
+  3.758921253092539*^9, 3.7589212557712812`*^9}, {3.7589215735857573`*^9, 
+  3.758921575913766*^9}},
+ CellLabel->"In[24]:=",ExpressionUUID->"43e5c6a6-1459-4e0d-8809-50b009839014"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"4.0939173327326617`*^-11", ",", 
+   RowBox[{"-", "2.363624274093277`*^-11"}], ",", 
+   RowBox[{"-", "91518.15809227168`"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.758921247502411*^9, 3.75892125614424*^9}, 
+   3.758921372295853*^9, 3.7589214313426995`*^9, 3.7589214785669374`*^9, 
+   3.7589215347815113`*^9, {3.758921577547764*^9, 3.7589216045093794`*^9}},
+ CellLabel->"Out[24]=",ExpressionUUID->"86f4bc37-dd47-45ab-98bd-9d21d7f789b0"]
+}, Open  ]]
+},
+WindowSize->{1004, 1080},
+WindowMargins->{{754, Automatic}, {Automatic, 126}},
+CellContext->Notebook,
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 5734, 149, 530, "Input",ExpressionUUID->"b7750ea0-874c-4183-b537-896c3e8d551c"],
+Cell[CellGroupData[{
+Cell[6317, 173, 331, 6, 28, "Input",ExpressionUUID->"43e5c6a6-1459-4e0d-8809-50b009839014"],
+Cell[6651, 181, 477, 8, 69, "Output",ExpressionUUID->"86f4bc37-dd47-45ab-98bd-9d21d7f789b0"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
