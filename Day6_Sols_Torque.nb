@@ -1,0 +1,340 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14207,        332]
+NotebookOptionsPosition[     13183,        308]
+NotebookOutlinePosition[     13528,        323]
+CellTagsIndexPosition[     13485,        320]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "This is a version of the angle code, cleaned up for production, and \
+encapsulated inside a ",
+ StyleBox["Module",
+  FontWeight->"Bold"],
+ ", which is a Mathematica version of a function. The name of this function \
+is ",
+ StyleBox["Submerged",
+  FontWeight->"Bold"],
+ ", and it takes one input which is the angle \[OpenCurlyDoubleQuote]theta\
+\[CloseCurlyDoubleQuote]. It uses the := construction which delays the \
+evaluation of this function until it is actually called. All the lines of the \
+function end in a semi-colon, except for the last one which is the only \
+quantity returned from the function. If you wanted to return multiple \
+quantities you would use a list. Note that we\[CloseCurlyQuote]ve just \
+defined the mass and a center of mass for convenience - you should edit this. \
+Also, we\[CloseCurlyQuote]ve used a couple of built-in Mathematica functions, \
+including ",
+ StyleBox["RegionMeasure",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["RegionCentroid",
+  FontWeight->"Bold"],
+ " - you don\[CloseCurlyQuote]t have to use these but they are convenient."
+}], "Text",
+ CellChangeTimes->{{3.758966947963768*^9, 3.758967126876458*^9}, {
+  3.758967158127225*^9, 3.7589671799485693`*^9}, {3.758967339864835*^9, 
+  3.758967381216516*^9}, {3.758967413069812*^9, 
+  3.758967450150836*^9}},ExpressionUUID->"dc69bc41-8861-427f-b964-\
+2c1bd1689362"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Submerged", "[", "theta_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"boat", " ", "=", " ", 
+      RowBox[{"ImplicitRegion", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"x", "^", "2"}], "/", "2"}], "<", "y", "<", "2"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", 
+            RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"y", ",", 
+            RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"water", " ", "=", " ", 
+      RowBox[{"ImplicitRegion", "[", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"theta", "<", "90"}], ",", 
+          RowBox[{"y", "<", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Tan", "[", 
+              RowBox[{"theta", " ", "Degree"}], "]"}], "*", "x"}], "+", 
+            "d"}]}], ",", 
+          RowBox[{"y", ">", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Tan", "[", 
+              RowBox[{"theta", " ", "Degree"}], "]"}], "*", "x"}], "+", 
+            "d"}]}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"x", ",", 
+            RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"y", ",", 
+            RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"mass", " ", "=", " ", "21000"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"com", " ", "=", " ", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"1", "/", "2"}], ",", "0"}], "}"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"under", " ", "=", " ", 
+      RowBox[{"RegionIntersection", "[", 
+       RowBox[{"boat", ",", "water"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"disp", " ", "=", " ", 
+      RowBox[{"1000", "*", "10", "*", 
+       RowBox[{"RegionMeasure", "[", "under", "]"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"draft", " ", "=", " ", 
+      RowBox[{"N", "[", 
+       RowBox[{"d", "/.", 
+        RowBox[{
+         RowBox[{"FindRoot", "[", 
+          RowBox[{
+           RowBox[{"disp", "\[Equal]", "mass"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"d", ",", 
+             RowBox[{"-", "20"}], ",", "20"}], "}"}]}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"cob", " ", "=", " ", 
+      RowBox[{"Append", "[", 
+       RowBox[{
+        RowBox[{"RegionCentroid", "[", 
+         RowBox[{"under", "/.", 
+          RowBox[{"{", 
+           RowBox[{"d", "\[Rule]", "draft"}], "}"}]}], "]"}], ",", "0"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"buoyancy", " ", "=", " ", 
+      RowBox[{"mass", "*", 
+       RowBox[{"98", "/", "10"}], "*", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{"Sin", "[", 
+           RowBox[{"theta", " ", "Degree"}], "]"}]}], ",", 
+         RowBox[{"Cos", "[", 
+          RowBox[{"theta", " ", "Degree"}], "]"}], ",", "0"}], "}"}]}]}], ";",
+      "\[IndentingNewLine]", 
+     RowBox[{"torque", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Cross", "[", 
+        RowBox[{
+         RowBox[{"cob", "-", "com"}], ",", "buoyancy"}], "]"}], "[", 
+       RowBox[{"[", "3", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     "torque"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.758901385562232*^9, 3.758901532341473*^9}, {
+   3.758901572565959*^9, 3.758901612867291*^9}, {3.758901673835073*^9, 
+   3.758901730022448*^9}, {3.7589018620321827`*^9, 3.7589018808156223`*^9}, {
+   3.75890193352603*^9, 3.758901934979435*^9}, {3.758902006383102*^9, 
+   3.758902141685199*^9}, {3.758902189207747*^9, 3.758902233629115*^9}, {
+   3.758902306370496*^9, 3.758902362029272*^9}, {3.758902445997065*^9, 
+   3.758902474428979*^9}, 3.758902557408553*^9, {3.758902594853094*^9, 
+   3.75890265296634*^9}, {3.758902685684107*^9, 3.7589026970308743`*^9}, {
+   3.7589027697499943`*^9, 3.758902780343389*^9}, {3.758902859631095*^9, 
+   3.758902917964501*^9}, {3.75890298093134*^9, 3.758902990503668*^9}, 
+   3.758903211830491*^9, {3.758903251119677*^9, 3.7589032621190777`*^9}, {
+   3.758904733586891*^9, 3.758904738261568*^9}, {3.758904805497313*^9, 
+   3.7589049123154793`*^9}, {3.758904943012122*^9, 3.758904945322616*^9}, {
+   3.758905002405843*^9, 3.758905073514077*^9}, {3.75890536799286*^9, 
+   3.758905370465046*^9}, {3.758905440800014*^9, 3.758905460441462*^9}, 
+   3.758905758287171*^9, {3.7589057891765633`*^9, 3.758905825803607*^9}, {
+   3.758906226895877*^9, 3.75890623703452*^9}, {3.758906313706378*^9, 
+   3.7589063507785387`*^9}, {3.758906396875639*^9, 3.758906505072769*^9}, {
+   3.758906668676791*^9, 3.7589066690886106`*^9}, {3.758906701438195*^9, 
+   3.758906702847466*^9}, {3.758906819784155*^9, 3.758906834279381*^9}, {
+   3.758906890667426*^9, 3.758906901295517*^9}, {3.758906946136548*^9, 
+   3.758906946243586*^9}, {3.758906979817142*^9, 3.758906987958712*^9}, {
+   3.758966124493927*^9, 3.7589662769871902`*^9}, {3.758966432027866*^9, 
+   3.7589664325097513`*^9}, {3.758966633881637*^9, 3.758966647192936*^9}, {
+   3.758966787705718*^9, 3.758966804468424*^9}, {3.758967132450935*^9, 
+   3.75896714884258*^9}, 3.7589911760354*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"9778d22b-34e2-4fc5-9582-baae146f6fa5"],
+
+Cell["\<\
+Here we test the function, which is supposed to return the torque, for \
+different angles. Remember that it won\[CloseCurlyQuote]t work with angles at \
+90 or very close to 90.\
+\>", "Text",
+ CellChangeTimes->{{3.75896720691816*^9, 
+  3.758967254742907*^9}},ExpressionUUID->"0a4c2aff-80ba-423e-9952-\
+a547adc66ef4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Submerged", "[", "30", "]"}]], "Input",
+ CellChangeTimes->{{3.75890683989258*^9, 3.758906854761921*^9}, {
+  3.758906907907991*^9, 3.758906908173505*^9}, {3.758966294805849*^9, 
+  3.758966355655868*^9}, {3.7589664440945787`*^9, 3.758966444190105*^9}, {
+  3.758991800402986*^9, 3.758991800506003*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"218e6234-34a1-4cce-a97f-fe4f06a1ccf8"],
+
+Cell[BoxData["134148.1580922717`"], "Output",
+ CellChangeTimes->{{3.758906845249506*^9, 3.758906856033402*^9}, {
+   3.758906904403111*^9, 3.7589069088489532`*^9}, 3.758906991182337*^9, {
+   3.758966297827578*^9, 3.758966357531683*^9}, {3.7589664396816063`*^9, 
+   3.758966445803431*^9}, 3.758966655318904*^9, {3.7589667909979677`*^9, 
+   3.7589668102933483`*^9}, {3.7589671417381496`*^9, 3.75896715177309*^9}, 
+   3.7589917332286997`*^9, 3.758991801222157*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"06b82bc4-2983-4d77-a3af-01709e1b8b7f"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Now we generate the stability curve, but calling the function for a bunch \
+of different angle values - Mathematica uses ",
+ StyleBox["Table",
+  FontWeight->"Bold"],
+ " to achieve this. Notice that we\[CloseCurlyQuote]ve defined the angles \
+here, and we\[CloseCurlyQuote]ve skipped over the angles from 80 to 100."
+}], "Text",
+ CellChangeTimes->{{3.758967263189611*^9, 
+  3.758967316478603*^9}},ExpressionUUID->"45c0260e-c9ab-435b-a602-\
+1957703e3f12"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"theta", ",", 
+      RowBox[{"Submerged", "[", "theta", "]"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"theta", ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "0", ",", "10", ",", "20", ",", "30", ",", "40", ",", "50", ",", "60", 
+        ",", "70", ",", "80", ",", "100", ",", "110", ",", "120", ",", "130", 
+        ",", "140", ",", "150", ",", "160", ",", "170", ",", "180"}], "}"}]}],
+      "}"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBWIQHZNWsK2T8Y2jwpOUPSC6x6jsAJiOPngIRL+U/nUM
+RP+wVDkOopetKjgDoo8klYLpPVadl0D0CeGzYNq/1PcWiA6aHwCmm6QP3gPR
+h/yEHoLo3re8b0C01QL2jyD6AmPPNxB9vrzkB4heIpv3F0Tvyyn+B6KnBDBs
+6wLS++v1wTSLQtEREC12qgxMs5ze69wNcl/HIhcQnWuxzANEH1DZCqaLBXqD
+QfQhbpk4EP3tnEEKiH4RHQCm/6ndmQqiz1Rfngaip++8vQxEt8hzLQfRc6bU
+HQXRr2e1gmmxQxfurwDSfYwlD0H0jau3noFot437XoJoACnCprg=
+  "],
+ CellLabel->"In[3]:=",ExpressionUUID->"110f18ac-e6cd-4c54-821a-566f036c92ab"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], 
+     PointBox[{{0., 0.}, {10., 41461.900639074476`}, {20., 
+      85232.0672891889}, {30., 134148.1580922717}, {40., 
+      168527.75147233997`}, {50., 185639.44752084807`}, {60., 
+      190749.65093846087`}, {70., 186337.63107068057`}, {80., 
+      173936.13817226465`}, {100., 130142.20591674032`}, {110., 
+      101337.68740062306`}, {120., 69926.83872705114}, {130., 
+      37781.513882615705`}, {140., 7409.380458192546}, {
+      150., -17120.692358009885`}, {160., -26713.931096252632`}, {
+      170., -12131.47158901341}, {
+      180., -8.573193153657562*^-13}}]}, {}}, {}, {}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 180.}, {-26713.931096252632`, 190749.65093846087`}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.758902712521421*^9, 3.758902755927397*^9}, {
+   3.7589027904259243`*^9, 3.758902806880039*^9}, 3.758902842039596*^9, {
+   3.7589028845285788`*^9, 3.758902923596209*^9}, {3.758902969678109*^9, 
+   3.758902995147175*^9}, {3.758903132256838*^9, 3.75890317701998*^9}, {
+   3.758903216588554*^9, 3.758903236500877*^9}, {3.758903269260672*^9, 
+   3.7589032842731457`*^9}, {3.75890474978192*^9, 3.758904754255368*^9}, {
+   3.7589048593476763`*^9, 3.758904949137945*^9}, {3.75890501935821*^9, 
+   3.758905048595839*^9}, 3.758905078665395*^9, 3.758905834682273*^9, {
+   3.7589058870413103`*^9, 3.758905895798554*^9}, 3.758905926618718*^9, 
+   3.758906110861143*^9, 3.758906156981614*^9, 3.758906272304727*^9, 
+   3.75890655558025*^9, {3.758906659546935*^9, 3.758906709483218*^9}, {
+   3.758906916624634*^9, 3.758906958272279*^9}, 3.758906999350684*^9, {
+   3.758966533544561*^9, 3.758966550371725*^9}, 3.758966615509831*^9, 
+   3.758966662301968*^9, {3.7589667978391848`*^9, 3.758966816801262*^9}, 
+   3.758967333878504*^9, 3.7589917414512196`*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"c9a83657-acc1-439c-88b2-ce7f2a472d56"]
+}, Open  ]]
+},
+WindowSize->{1211, 716},
+WindowMargins->{{977, Automatic}, {Automatic, 287}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1377, 29, 122, "Text",ExpressionUUID->"dc69bc41-8861-427f-b964-2c1bd1689362"],
+Cell[1938, 51, 5560, 126, 257, "Input",ExpressionUUID->"9778d22b-34e2-4fc5-9582-baae146f6fa5"],
+Cell[7501, 179, 325, 7, 34, "Text",ExpressionUUID->"0a4c2aff-80ba-423e-9952-a547adc66ef4"],
+Cell[CellGroupData[{
+Cell[7851, 190, 401, 6, 28, "Input",ExpressionUUID->"218e6234-34a1-4cce-a97f-fe4f06a1ccf8"],
+Cell[8255, 198, 538, 7, 32, "Output",ExpressionUUID->"06b82bc4-2983-4d77-a3af-01709e1b8b7f"]
+}, Open  ]],
+Cell[8808, 208, 471, 10, 56, "Text",ExpressionUUID->"45c0260e-c9ab-435b-a602-1957703e3f12"],
+Cell[CellGroupData[{
+Cell[9304, 222, 1023, 23, 28, "Input",ExpressionUUID->"110f18ac-e6cd-4c54-821a-566f036c92ab"],
+Cell[10330, 247, 2837, 58, 223, "Output",ExpressionUUID->"c9a83657-acc1-439c-88b2-ce7f2a472d56"]
+}, Open  ]]
+}
+]
+*)
+
