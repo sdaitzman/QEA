@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      9628,        256]
-NotebookOptionsPosition[      8761,        232]
-NotebookOutlinePosition[      9104,        247]
-CellTagsIndexPosition[      9061,        244]
+NotebookDataLength[     10045,        266]
+NotebookOptionsPosition[      9085,        241]
+NotebookOutlinePosition[      9426,        256]
+CellTagsIndexPosition[      9383,        253]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -152,7 +152,7 @@ Cell[BoxData[
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`d$$], 0}, -1, 2}}, Typeset`size$$ = {
-    360., {91., 97.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    227.2, {14.1, 24.65}}, Typeset`update$$ = 0, Typeset`initDone$$, 
     Typeset`skipInitDone$$ = True, $CellContext`d$11369$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`d$$ = 0}, 
@@ -167,7 +167,7 @@ Cell[BoxData[
           2}, $CellContext`d$$]], 
       "Specifications" :> {{{$CellContext`d$$, 0}, -1, 2}}, "Options" :> {}, 
       "DefaultOptions" :> {}],
-     ImageSizeCache->{411., {138., 144.}},
+     ImageSizeCache->{279., {64., 70.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -226,12 +226,21 @@ Cell[BoxData[
       RowBox[{"1", "+", "u"}]]]}]}], "}"}]], "Print",
  CellChangeTimes->{3.759024444830048*^9},
  CellLabel->"",ExpressionUUID->"739181d4-2bc1-4d4b-aac6-0e88eda4e41c"]
-}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Show","gtype",
+   "\"\\!\\(\\*RowBox[{\\\"OffsetCurve\\\"}]\\) is not a type of graphics.\"",
+   2,1,1,15525715186186043210,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.759024549801982*^9},
+ CellLabel->"",ExpressionUUID->"9b537587-89d3-4503-ac40-be223cba0730"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{896, 988},
-WindowMargins->{{Automatic, 250}, {Automatic, 40}},
+WindowSize->{958, 988},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
 FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
@@ -250,12 +259,13 @@ Cell[CellGroupData[{
 Cell[580, 22, 160, 3, 67, "Section",ExpressionUUID->"18daee4e-4a64-48cb-a553-906d7c864554"],
 Cell[CellGroupData[{
 Cell[765, 29, 4897, 115, 383, "Input",ExpressionUUID->"1e8511bf-0a39-4d8d-90be-64b6a788944f"],
-Cell[5665, 146, 1894, 37, 301, "Output",ExpressionUUID->"5b067bb8-d2eb-41c3-aabc-255399b1f25d"],
+Cell[5665, 146, 1896, 37, 153, "Output",ExpressionUUID->"5b067bb8-d2eb-41c3-aabc-255399b1f25d"],
 Cell[CellGroupData[{
-Cell[7584, 187, 233, 6, 50, "Print",ExpressionUUID->"33672086-d411-4226-a6c3-02f91ad2500e"],
-Cell[7820, 195, 448, 15, 63, "Print",ExpressionUUID->"4c5109d5-426d-4394-b9c2-f25160c5e296"],
-Cell[8271, 212, 450, 15, 63, "Print",ExpressionUUID->"739181d4-2bc1-4d4b-aac6-0e88eda4e41c"]
-}, Open  ]]
+Cell[7586, 187, 233, 6, 50, "Print",ExpressionUUID->"33672086-d411-4226-a6c3-02f91ad2500e"],
+Cell[7822, 195, 448, 15, 63, "Print",ExpressionUUID->"4c5109d5-426d-4394-b9c2-f25160c5e296"],
+Cell[8273, 212, 450, 15, 63, "Print",ExpressionUUID->"739181d4-2bc1-4d4b-aac6-0e88eda4e41c"]
+}, Open  ]],
+Cell[8738, 230, 319, 7, 21, "Message",ExpressionUUID->"9b537587-89d3-4503-ac40-be223cba0730"]
 }, Open  ]]
 }, Open  ]]
 }
